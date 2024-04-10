@@ -1,46 +1,37 @@
+
 "use client"
 import React, { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
-import './page.module.css';
-import 'aos/dist/aos.css';
-import AOS from 'aos';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { authService } from './authService';
+import {Provider} from 'react-redux';
+import {store} from './redux/store';
 
 const LoginForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter()
-
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
-    
-      router.push('/homepage')
+      const { user, token } = await authService.login(values.email, values.password, dispatch);
+      dispatch({ type: 'LOGIN_SUCCESS', payload: { user, token } });
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', token);
+      sessionStorage.setItem('user', JSON.stringify(user));
+      sessionStorage.setItem('token', token);
+      router.push('/homepage');
     } catch (error) {
       setLoading(false);
       message.error('Login failed. Please try again.');
     }
   };
 
-  React.useEffect(() => {
-    AOS.init();
-
-  }, []);
-
-  
   return (
-    <div className="container"  data-aos="zoom-in"
-    data-aos-duration="2000"
-     style={{ 
-    padding: "1%", backgroundColor: "rgba(144, 144, 144, 0.2)", borderRadius:"7%", marginTop:"10%", width: "50%", }}  >
-      <div
-        data-aos="zoom-in"
-        data-aos-duration="2000"
-        style={{ border: "black solid 1px" , 
-        borderRadius: "7%",
-        padding: "20px",
-      backgroundColor: "white"}}
-      >
+    <div className="container" data-aos="zoom-in" data-aos-duration="2000" style={{ padding: "1%", backgroundColor: "rgba(144, 144, 144, 0.2)", borderRadius: "7%", marginTop: "10%", width: "50%" }}>
+      <div data-aos="zoom-in" data-aos-duration="2000" style={{ border: "black solid 1px", borderRadius: "7%", padding: "20px", backgroundColor: "white" }}>
         <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
         <Form name="loginForm" initialValues={{ remember: true }} onFinish={onFinish}>
           <Form.Item
@@ -67,4 +58,11 @@ const LoginForm: React.FC = () => {
     </div>
   );
 };
-export default LoginForm;
+
+const WrappedLoginForm: React.FC = () => (
+  <Provider store={store}>
+    <LoginForm />
+  </Provider>
+);
+
+export default WrappedLoginForm;
