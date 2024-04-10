@@ -27,13 +27,19 @@ const LoginForm: React.FC = () => {
 
   }, []);
 
+  
   return (
-    
-    <div className="flex justify-center items-center h-screen">
+    <div className="container"  data-aos="zoom-in"
+    data-aos-duration="2000"
+     style={{ 
+    padding: "1%", backgroundColor: "rgba(144, 144, 144, 0.2)", borderRadius:"7%", marginTop:"10%", width: "50%", }}  >
       <div
         data-aos="zoom-in"
         data-aos-duration="2000"
-        className="login-form-container w-full max-w-md px-4 py-8 bg-white shadow-md rounded-lg"
+        style={{ border: "black solid 1px" , 
+        borderRadius: "7%",
+        padding: "20px",
+      backgroundColor: "white"}}
       >
         <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
         <Form name="loginForm" initialValues={{ remember: true }} onFinish={onFinish}>
@@ -61,5 +67,4 @@ const LoginForm: React.FC = () => {
     </div>
   );
 };
-
 export default LoginForm;

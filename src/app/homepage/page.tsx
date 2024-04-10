@@ -17,7 +17,7 @@ const Home: React.FC = () => {
     });
   }, []);
   return (
-    <div style={{ margin: "20%", textAlign: "center" }}>
+    <div style={{ backgroundColor: "white", padding: "10%", margin: "20%", textAlign: "center" }}>
       <Title data-aos="fade-up">Welcome to the Home Page</Title>
       <Paragraph data-aos="fade-up">
         <h3>Welcome to Our Platform!</h3>
