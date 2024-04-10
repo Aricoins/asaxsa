@@ -1,0 +1,22 @@
+
+
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black; /* Fondo negro */
+  }
+  
+  .login-form {
+    width: 300px; /* Ancho del formulario */
+    padding: 20px; /* Espaciado interno */
+    background-color: white; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  .login-form-item {
+    margin-bottom: 16px; /* Espaciado inferior entre elementos del formulario */
+  }
+  

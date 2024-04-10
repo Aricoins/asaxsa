@@ -1,0 +1,46 @@
+.todo-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todo-container h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+   
+  }
+  
+  .todo-container ul {
+    list-style: none;
+    padding: 0;
+    background-color: #646cff;
+  }
+  
+  .todo-container li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #c71212;
+    background-color: red
+  }
+  
+  .todo-container li:last-child {
+    border-bottom: none;
+    background-color: green;
+  }
+  
+  .todo-container input,
+  .todo-container .ant-select-selector,
+  .todo-container .ant-picker {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .todo-container button {
+    margin-left: 10px;
+  }
+  
