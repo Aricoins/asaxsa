@@ -5,20 +5,47 @@ import { Button, Typography } from 'antd';
 import Link from 'next/link';
 import AOS from 'aos'; // Importa la librería AOS
 import 'aos/dist/aos.css'; // Importa el archivo CSS de AOS
+import { useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
+import {store} from '../redux/store';
+import router from 'next/router';
+
 
 const { Title, Paragraph } = Typography;
+interface AuthState {
+  user: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: string;
+    verification: {
+      email: boolean;
+    };
+  };
+  token: string;
+}
+
 
 const Home: React.FC = () => {
+const user = useSelector((state: AuthState) => state.user);
+// const {firstName} = user;
+// !user ? router.push('/') : null;
+console.log(user);
+
   // Inicializar AOS
   useEffect(() => {
+
+
     AOS.init({
       duration: 1000, // Duración de la animación en milisegundos
       once: true // La animación se realiza solo una vez
     });
   }, []);
   return (
+    
     <div style={{ backgroundColor: "white", padding: "10%", margin: "20%", textAlign: "center" }}>
-      <Title data-aos="fade-up">Welcome to the Home Page</Title>
+      <Title data-aos="fade-up">Usuario{user.firstName}</Title>
       <Paragraph data-aos="fade-up">
         <h3>Welcome to Our Platform!</h3>
         <p>At To Do App, we understand the value of organization and task planning. Effective organization reduces stress, boosts productivity, and helps you achieve your goals efficiently.</p>
@@ -31,8 +58,13 @@ const Home: React.FC = () => {
       </Paragraph>
       <Button data-aos="fade-up"><Link href="../todos"> Add Todos </Link></Button>
     </div>
-  );
+ );
 };
+const WrappedLoginForm: React.FC = () => (
+  <Provider store={store}>
+    <Home />
+  </Provider>
+);
 
-export default Home;
+export default WrappedLoginForm;
 

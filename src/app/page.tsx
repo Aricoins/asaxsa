@@ -18,11 +18,7 @@ const LoginForm: React.FC = () => {
     try {
       const { user, token } = await authService.login(values.email, values.password, dispatch);
       dispatch({ type: 'LOGIN_SUCCESS', payload: { user, token } });
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', token);
-      sessionStorage.setItem('user', JSON.stringify(user));
-      sessionStorage.setItem('token', token);
-      router.push('/homepage');
+        router.push('/homepage');
     } catch (error) {
       setLoading(false);
       message.error('Login failed. Please try again.');
