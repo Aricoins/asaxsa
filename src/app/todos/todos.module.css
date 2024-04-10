@@ -43,4 +43,21 @@
   .todo-container button {
     margin-left: 10px;
   }
-  
+/* Estilo del contenedor del loader */
+.loader {
+  border: 10px solid rgba(186, 186, 37, 0.1); /* Color del borde */
+  border-top: 100px solid #f4eaea; /* Color del borde superior */
+  border-radius: 50%; /* Hace que el loader tenga forma de círculo */
+  width: 50px; /* Ancho del loader */
+  height: 50px; /* Altura del loader */
+  animation: spin 1s linear infinite; /* Aplica la animación spin */
+  margin: auto; /* Centra el loader horizontalmente */
+  margin-top: 20vh; 
+  background-color: antiquewhite;
+}
+
+/* Animación de rotación del loader */
+@keyframes spin {
+  0% { transform: rotate(0deg); } /* Define la rotación inicial */
+  100% { transform: rotate(360deg); } /* Define la rotación final */
+}

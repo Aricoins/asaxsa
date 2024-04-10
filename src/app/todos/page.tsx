@@ -60,9 +60,8 @@ Aos.init();
   }, []);
 
   return (
-    <>
-      {<FloatButton/> ? (
-        <div className="todo-container">
+    <>{loading ? (
+        <div className="todo-container bg-white m-5 p-5 br-2">
           <h1 data-aos="fade-left" style={{ justifyContent: "center", textAlign: "center", color: "rgb(227, 156, 162)" }}>ToDo List</h1>
           <Row gutter={16} className="mb-4">
             <Col xs={24} sm={12} md={8}>
@@ -138,7 +137,12 @@ Aos.init();
           </Modal>
         </div>
       ) : (
-        <p>Loading...</p>
+        <div className="d-flex justify-content-center margin-50">
+        <div className="spinner-border text-light m-5" role="status">
+        <span className="sr-only"></span>
+        </div>
+      </div>
+      
       )}
     </>
   );
