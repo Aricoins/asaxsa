@@ -38,7 +38,7 @@ const LoginPage = () => {
   }, []);
 
   return (
-    <div className="container" data-aos="zoom-in" data-aos-duration="2000" style={{ padding: "1%", backgroundColor: "rgba(144, 144, 144, 0.2)", borderRadius: "7%", marginTop: "10%", width: "50%" }}>
+    <div className="container"  data-aos="zoom-in" data-aos-duration="2000" style={{ padding: "1%", backgroundColor: "rgba(144, 144, 144, 0.2)", borderRadius: "7%", marginTop: "10%", width: "50%" }}>
       <div data-aos="zoom-in" data-aos-duration="2000" style={{ border: "black solid 1px", borderRadius: "7%", padding: "20px", backgroundColor: "white" }}>
         <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
         <Form name="loginForm" initialValues={{ remember: true }} 
@@ -51,7 +51,7 @@ const LoginPage = () => {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>
-              Login
+              ToDo App Login
             </Button>
           </Form.Item>
         </Form>

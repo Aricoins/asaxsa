@@ -1,39 +1,69 @@
 "use client"
-
 import React, { useEffect } from 'react';
-import { Button, Typography } from 'antd';
+import { Button, Typography, Card, Modal } from 'antd';
 import Link from 'next/link';
 import AOS from 'aos'; // Importa la librería AOS
 import 'aos/dist/aos.css'; // Importa el archivo CSS de AOS
 import {useSelector} from 'react-redux';
-const { Title, Paragraph } = Typography;
 import { useRouter } from 'next/navigation';
 import { Provider } from 'react-redux';
 import {store} from '../redux/store';
 import TokenValidator from '../components/TokenValidator';
 
+const { Title, Paragraph } = Typography;
+
 const Home: React.FC = () => {
   const token = useSelector((state: any) => state.token);
-  console.log(token, "token en Home")
+  const user = useSelector((state: any) => state.user);
+  const userGlobal = user[0] 
+  const tokenGlobal = token[0]
+
+  console.log(tokenGlobal, "tokenGlobal")
   const router = useRouter();
-  if (!token) {
+  if (!tokenGlobal) {
+    alert("This route is exclusive to authenticated users with the quoter role.")
     router.push(' ./')
   } 
 else { 
-  console.log(token);
+  console.log( userGlobal, "Datos del usuario global en homepage")
 }
-  
+if (!userGlobal) {
+  Modal.error({
+    title: 'Access Denied',
+    content: 'This route is exclusive to authenticated users with the quoter role.',
+    okText: 'OK',
+    onOk() {
+      router.push('/');
+    },
+  });
+}
+
+
   // Inicializar AOS
   useEffect(() => {
     AOS.init({
       duration: 1000, // Duración de la animación en milisegundos
          });
   }, []);
-  
+  console.log(userGlobal, "usuario antes del return")
+
+  console.log(tokenGlobal, "token antes del return")
   return (
-<>
-    {/* <TokenValidator  token={token}/> */}
-    <div style={{ backgroundColor: "white", padding: "10%", margin: "20%", textAlign: "center" }}>
+ user[0] ? (
+  <>
+  
+<div className='flex flex-row'>
+
+  <Card className="w-20 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+  <div className="p-6">
+    <h2 className="text-lg font-semibold text-gray-800 mb-4">Mi perfil:</h2>
+    <TokenValidator token={tokenGlobal} />
+    <p className="text-primary">Firstname: {userGlobal.firstName}</p>
+    <p className="text-primary">Lastname: {userGlobal.lastName}</p>
+    <p className="text-primary">Email: {userGlobal.email}</p>
+    <p className="text-primary">Role: {userGlobal.role}</p>
+  </div>
+</Card>    <div style={{ backgroundColor: "white", padding: "10%", margin: "20%", textAlign: "center" }}>
       <Title data-aos="fade-up">Welcome to the Home Page </Title>
       <Paragraph data-aos="fade-up">
         <h3>Welcome to Our Platform!</h3>
@@ -47,7 +77,12 @@ else {
       </Paragraph>
       <Button data-aos="fade-up"><Link href="./todos"> Add Todos </Link></Button>
     </div>
-    </>
+    </div>
+  </>
+  
+) : <h2>Login</h2> 
+    
+     
   );
 };
 

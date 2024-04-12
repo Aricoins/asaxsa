@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import jwtDecode from 'jwt-decode'; // Librería para decodificar JWT
+import * as jwtDecode from 'jwt-decode';
 
 const TokenValidator = ({ token }) => {
   const [isValid, setIsValid] = useState(false);
@@ -26,7 +26,7 @@ const TokenValidator = ({ token }) => {
 
   return (
     <div>
-      <h2>Validación de Token JWT</h2>
+      <h2>Token JWT</h2>
       {isValid ? (
         <div>
           <p>El token es válido.</p>

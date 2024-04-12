@@ -13,7 +13,7 @@ interface AuthState {
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['authReducer'], // Lista blanca de los reductores que se van a persistir
+  //whitelist: ['suthReducer'], // Lista blanca de los reductores que se van a persistir
 };
 
 // Asegúrate de que el tipo del estado inicial coincide con el tipo AuthState

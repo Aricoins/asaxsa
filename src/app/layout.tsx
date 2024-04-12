@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import styles from  "./global.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import React from "react";
 
 // const ReduxProvider = dynamic(() => import("@/store/redux-provider"), {
@@ -23,9 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en"  >
-      <body >
-          {children}
-       </body>
+      <body className={styles.body}>
+                  {children}
+      </body>
     </html>
   );
 }
