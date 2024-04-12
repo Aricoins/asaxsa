@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import {store, persistor} from './redux/store';
 import { useSelector } from 'react-redux';	
 import { PersistGate } from 'redux-persist/integration/react';
+import Image from 'next/image';
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false); // Agregamos estado para manejar el estado de carga del botón de inicio de sesión
@@ -59,17 +60,22 @@ const LoginPage = () => {
       </div>
     </div>
     <div style= {{
-      backgroundColor: "rgb(255, 255, 255, 0.7)", 
-      width: "15%",
+      backgroundColor: "rgb(0, 0, 0, 0.3)", 
+      
+      height: "6%",
+      width: "13%",
       fontSize: "10px", 
-      marginTop: "1%", 
-      marginLeft: "80%",
-      color: "black",
+      margin: "auto",
+      marginLeft: "60%",
+      color: "white",
+      fontWeight: "bold",
       textAlign: "center", 
       borderRadius: "7%",
+      marginTop: "0.5%",
        }}>
-      <img src="https://www.lilhorselab.com/wp-content/uploads/2023/10/logo.png" alt="login"  style={{position: "relative", width: "100%"}} />
-      <p>Prueba tecnica para LilHorse</p>
+      <Image src="https://www.lilhorselab.com/wp-content/uploads/2023/10/logo.png" alt="login" width={100} height={50} style={{position: "relative", width: "100%"
+    }} />
+      <p>Prueba técnica: Ariel Rogel </p>
     </div>
 </>
 );
