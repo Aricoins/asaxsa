@@ -1,14 +1,14 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FloatButton, Input, Button, Select, DatePicker, Row, Col, Modal } from 'antd';
+import { FloatButton, Input, Button, Select, DatePicker, Row, Col, Modal, Table, Tag, Space, notification } from 'antd';
 import './todos.module.css';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-
 const { Option } = Select;
 const URL = "https://servertodo-production.up.railway.app/api/todos/";
+
 const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<any[]>([]);
   const [newTodo, setNewTodo] = useState('');
@@ -17,7 +17,6 @@ const TodosPage: React.FC = () => {
   const [editTodo, setEditTodo] = useState<any>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-
 
   const fetchTodos = async () => {
     try {
@@ -40,8 +39,10 @@ const TodosPage: React.FC = () => {
       setSelectedHashtags([]);
       setDueDate(undefined);
       fetchTodos();
+      notification.success({ message: 'Todo added successfully' });
     } catch (error) {
       console.error('Error adding todo:', error);
+      notification.error({ message: 'Failed to add todo' });
     }
   };
 
@@ -49,18 +50,26 @@ const TodosPage: React.FC = () => {
     try {
       await axios.delete(`${URL}${id}`);
       fetchTodos();
+      notification.success({ message: 'Todo deleted successfully' });
     } catch (error) {
       console.error('Error deleting todo:', error);
+      notification.error({ message: 'Failed to delete todo' });
     }
   };
 
+  const handleEditTodo = (todo: any) => {
+    setEditTodo(todo);
+    setIsModalVisible(true);
+  };
+
   useEffect(() => {
-Aos.init();
+    Aos.init();
     fetchTodos();
   }, []);
 
   return (
-    <>{loading ? (
+    <>
+      {loading ? (
         <div className="todo-container bg-white m-5 p-5 br-2">
           <h1 data-aos="fade-left" style={{ justifyContent: "center", textAlign: "center", color: "rgb(227, 156, 162)" }}>ToDo List</h1>
           <Row gutter={16} className="mb-4">
@@ -96,36 +105,6 @@ Aos.init();
               <Button type="primary" onClick={handleAddTodo}>Add Todo</Button>
             </Col>
           </Row>
-              <table
-      data-aos="fade-left"
-      style={{
-  backgroundColor: "rgba(255, 0, 0, 0.2)",
-  borderRadius: "5px",
-  width: "100%",
-  borderCollapse: "collapse",
-}}>
-  <thead>
-    <tr style={{ backgroundColor: "rgba(232, 240, 232, 0.5)" }}>
-      <th style={{ padding: "10px", border: "1px solid red" }}>Text</th>
-      <th style={{ padding: "10px", border: "1px solid red" }}>Hashtags</th>
-      <th style={{ padding: "10px", border: "1px solid red" }}>Due Date</th>
-      <th style={{ padding: "10px", border: "1px solid red" }}>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {todos.map((todo: any) => (
-      <tr key={todo._id}>
-        <td style={{ backgroundColor: "rgba(255, 0, 0, 0.2)", padding: "10px", border: "1px solid red" }}>{todo.text}</td>
-        <td style={{ backgroundColor: "rgba(227, 98, 193, 0.2)", padding: "10px", border: "1px solid red" }}>{todo.hashtags}</td>
-        <td style={{ backgroundColor: "rgba(5, 245, 49, 0.2)", padding: "10px", border: "1px solid red" }}>{todo.dueDate}</td>
-        <td style={{ padding: "10px", border: "1px solid red" }}>
-          <Button type="dashed" onClick={() => handleDeleteTodo(todo._id)}>Delete</Button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-     
           {/* Modal para editar */}
           <Modal
             title="Edit Todo"
@@ -138,47 +117,55 @@ Aos.init();
         </div>
       ) : (
         <div className="d-flex justify-content-center margin-50">
-        <div className="spinner-border text-light m-5" role="status">
-        <span className="sr-only"></span>
+          <div className="spinner-border text-light m-5" role="status">
+            <span className="sr-only"></span>
+          </div>
         </div>
-      </div>
-      
       )}
+
+      <Table
+        dataSource={todos}
+        columns={[
+          {
+            title: 'Text',
+            dataIndex: 'text',
+            key: 'text',
+            render: (text: string) => <span>{text}</span>,
+          },
+          {
+            title: 'Hashtags',
+            dataIndex: 'hashtags',
+            key: 'hashtags',
+            render: (hashtags: string[]) => (
+              <>
+                {hashtags.map((tag: string) => (
+                  <Tag color="blue" key={tag}>
+                    {tag}
+                  </Tag>
+                ))}
+              </>
+            ),
+          },
+          {
+            title: 'Due Date',
+            dataIndex: 'dueDate',
+            key: 'dueDate',
+            render: (dueDate: string) => <span>{dueDate}</span>,
+          },
+          {
+            title: 'Actions',
+            key: 'actions',
+            render: (text: any, record: any) => (
+              <Space size="middle">
+                <Button type="dashed" onClick={() => handleDeleteTodo(record._id)}>Delete</Button>
+                <Button type="primary" onClick={() => handleEditTodo(record)}>Edit</Button>
+              </Space>
+            ),
+          },
+        ]}
+      />
     </>
   );
 }
-  export default TodosPage;
-   
 
-//       <Modal
-//         title="Edit Todo"
-//         visible={isModalVisible}
-//         onOk={handleAddTodo}
-//         onCancel={() => setIsModalVisible(false)}
-//       >
-//         <Input
-//           placeholder="Enter todo text"
-//           value={editTodo?.text}
-//           onChange={(e) => setEditTodo({ ...editTodo, text: e.target.value })}
-//         />
-//         <DatePicker
-//           placeholder="Due Date"
-//           value={dueDate}
-//           onChange={(date) => setDueDate(date)}
-//           style={{ width: '100%', marginBottom: '10px' }}
-//         />
-//         <Select
-//           mode="tags"
-//           placeholder="Select hashtags"
-//           value={editTodo?.hashtags}
-//           onChange={(values: string[]) => setEditTodo({ ...editTodo, hashtags: values })}
-//           style={{ width: '100%', marginBottom: '10px' }}
-//         />
-//       </Modal>
-    
-//     </div>)}
-
-//   );
-// };
-
-// export default TodosPage;
+export default TodosPage;

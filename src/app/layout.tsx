@@ -3,6 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import React from "react";
+
+// const ReduxProvider = dynamic(() => import("@/store/redux-provider"), {
+//   ssr: false
+// });
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className='bg-black' >
-      <body className={`${inter.className} bg-black`}
-  >{children}</body>
+    <html lang="en"  >
+      <body >
+          {children}
+       </body>
     </html>
   );
 }
