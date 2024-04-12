@@ -25,13 +25,12 @@ const Home: React.FC = () => {
 
   console.log(tokenGlobal, "tokenGlobal")
   const router = useRouter();
-  if (!tokenGlobal) {
-    alert("This route is exclusive to authenticated users with the quoter role.")
-    router.push(' ./')
-  } 
-else { 
-  console.log( userGlobal, "Datos del usuario global en homepage")
-}
+//   if (!tokenGlobal) {
+//     router.push(' ./')
+//   } 
+// else { 
+//   console.log( userGlobal, "Datos del usuario global en homepage")
+// }
 if (!userGlobal) {
   Modal.error({
     title: 'Access Denied',
