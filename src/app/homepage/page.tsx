@@ -9,6 +9,10 @@ import { useRouter } from 'next/navigation';
 import { Provider } from 'react-redux';
 import {store} from '../redux/store';
 import TokenValidator from '../components/TokenValidator';
+import styles from './homepage.module.css';
+import { logout } from '../redux/actions';
+import avatardefault from '../../assets/avatardefault.png';
+import { RxAvatar } from "react-icons/rx";
 
 const { Title, Paragraph } = Typography;
 
@@ -17,6 +21,7 @@ const Home: React.FC = () => {
   const user = useSelector((state: any) => state.user);
   const userGlobal = user[0] 
   const tokenGlobal = token[0]
+  const globalAvatar = user.avatar || avatardefault; 
 
   console.log(tokenGlobal, "tokenGlobal")
   const router = useRouter();
@@ -48,42 +53,68 @@ if (!userGlobal) {
   console.log(userGlobal, "usuario antes del return")
 
   console.log(tokenGlobal, "token antes del return")
-  return (
- user[0] ? (
-  <>
   
-<div className='flex flex-row'>
+  // const handleLogout = async () => {
+  //   const id =  userGlobal.id;
+  //   logout(id);
+  //     navigate.push('/');
+  //   } catch (error) {
+  //     console.error('Error logging in:', error);
+  //   } 
+  // };
 
-  <Card className="w-20 mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-  <div className="p-6">
-    <h2 className="text-lg font-semibold text-gray-800 mb-4">Mi perfil:</h2>
-    <TokenValidator token={tokenGlobal} />
-    <p className="text-primary">Firstname: {userGlobal.firstName}</p>
-    <p className="text-primary">Lastname: {userGlobal.lastName}</p>
-    <p className="text-primary">Email: {userGlobal.email}</p>
-    <p className="text-primary">Role: {userGlobal.role}</p>
-  </div>
-</Card>    <div style={{ backgroundColor: "white", padding: "10%", margin: "20%", textAlign: "center" }}>
-      <Title data-aos="fade-up">Welcome to the Home Page </Title>
-      <Paragraph data-aos="fade-up">
-        <h3>Welcome to Our Platform!</h3>
-        <p>At To Do App, we understand the value of organization and task planning. Effective organization reduces stress, boosts productivity, and helps you achieve your goals efficiently.</p>
-        <p>Why It Matters</p>
-        <p>Being organized allows you focus on what matters most, whether it's personal projects or professional tasks. By planning your tasks effectively, you can stay on track, overcome obstacles, and reach your objectives with confidence.</p>
-        <p>How We Can Help</p>
-        <p>Our platform offers intuitive tools and resources to streamline your organization and task planning process. From simple task management to customizable workflows, we've got you covered.</p>
-        <p>Start Today</p>
-        <p>Join us today and take control of your time. Let's turn your goals into achievements together!</p>
-      </Paragraph>
-      <Button data-aos="fade-up"><Link href="./todos"> Add Todos </Link></Button>
-    </div>
-    </div>
-  </>
+
+  return (
+   userGlobal ? 
+   <div className="container-fluid text-right w-2">
+        <div className="row mt-2">
+          <div className="col-md-6">
+            <div className="card bg-white shadow-md rounded-lg">
+              <div className="card-body">
+                <div className="flex justify-between items-center">
+                  <div style={{fontSize: "120px", display: "flex", justifyContent: "center", alignSelf: "center", margin: "auto" }}>
+                  <RxAvatar  />  
+                                        <div>
+                    <h2 className="card-title text-lg font-semibold text-gray-800 m-3 p-3">My Profile:</h2></div>
+                  </div>
+                  
+                <TokenValidator token={tokenGlobal} />
+                <p className="text-3xl text-amber-500">Firstname: {userGlobal.firstName}</p>
+                <p className="justify-right">Lastname: {userGlobal.lastName}</p>
+                <p className="bg-red">Email: {userGlobal.email}</p>
+                <p className="text-4xl">Role: {userGlobal.role}</p>
+              </div>
+              
+              </div>
+            <button
+                    onClick={logout()}
+                    className="text-primary"
+                  >
+                    Logout
+                  </button>
+            </div>
+          </div>
+          
+          <div className="col-md-6 bg-white bg-opacity-70 p-10 m-20 text-center"> 
   
-) : <h2>Login</h2> 
+      <Title data-aos="fade-up">Welcome Todo App </Title>
+      <Paragraph data-aos="fade-up">
+        <p>At To Do App, we understand the value of organization and task planning. Effective organization reduces stress, boosts productivity, and helps you achieve your goals efficiently.</p>
+        <p data-aos="fade-up">Why It Matters</p>
+        <p>Being organized allows you focus on what matters most, whether it's personal projects or professional tasks. By planning your tasks effectively, you can stay on track, overcome obstacles, and reach your objectives with confidence.</p>
+        <p data-aos="fade-up">How We Can Help</p>
+        <p>Our platform offers intuitive tools and resources to streamline your organization and task planning process. From simple task management to customizable workflows, we've got you covered.</p>
+        
+      </Paragraph>
+      <Button data-aos="fade-up" className={styles.botontodos}><Link href="./todos"> Join us today </Link></Button>
+      <p> ... and take control of your time. Let's turn your goals into achievements together!</p>
+    </div>
+    </div>
+    </div>
+   : <h2>Login</h2> 
+  )
     
-     
-  );
+
 };
 
 const WrappedProvider = () => {

@@ -25,7 +25,8 @@ const TokenValidator = ({ token }) => {
   }, []);
 
   return (
-    <div>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center"
+    }} >
       <h2>Token JWT</h2>
       {isValid ? (
         <div>
@@ -36,7 +37,7 @@ const TokenValidator = ({ token }) => {
           {/* Podemos mostrar más información del token aquí */}
         </div>
       ) : (
-        <p>El token no es válido.</p>
+        <p style={{color: "green", fontWeight: "500"}}>El token es válido.</p>
       )}
     </div>
   );

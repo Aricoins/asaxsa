@@ -38,7 +38,8 @@ const LoginPage = () => {
   }, []);
 
   return (
-    <div className="container"  data-aos="zoom-in" data-aos-duration="2000" style={{ padding: "1%", backgroundColor: "rgba(144, 144, 144, 0.2)", borderRadius: "7%", marginTop: "10%", width: "50%" }}>
+   <>
+   <div className="container"  data-aos="zoom-in" data-aos-duration="2000" style={{ padding: "1%", backgroundColor: "rgba(144, 144, 144, 0.2)", borderRadius: "7%", marginTop: "10%", width: "50%" }}>
       <div data-aos="zoom-in" data-aos-duration="2000" style={{ border: "black solid 1px", borderRadius: "7%", padding: "20px", backgroundColor: "white" }}>
         <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
         <Form name="loginForm" initialValues={{ remember: true }} 
@@ -50,14 +51,28 @@ const LoginPage = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" block loading={loading}>
+            <Button style={{backgroundColor: "rgb(77, 88, 121)"}}type="primary" htmlType="submit" block loading={loading}>
               ToDo App Login
             </Button>
           </Form.Item>
         </Form>
       </div>
     </div>
-  );
+    <div style= {{
+      backgroundColor: "rgb(255, 255, 255, 0.7)", 
+      width: "15%",
+      fontSize: "10px", 
+      marginTop: "1%", 
+      marginLeft: "80%",
+      color: "black",
+      textAlign: "center", 
+      borderRadius: "7%",
+       }}>
+      <img src="https://www.lilhorselab.com/wp-content/uploads/2023/10/logo.png" alt="login"  style={{position: "relative", width: "100%"}} />
+      <p>Prueba tecnica para LilHorse</p>
+    </div>
+</>
+);
 };
 
 const WrappedPages = () => {

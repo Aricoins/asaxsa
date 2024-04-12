@@ -70,8 +70,16 @@ const TodosPage: React.FC = () => {
   return (
     <>
       {loading ? (
-        <div className="todo-container bg-white m-5 p-5 br-2">
-          <h1 data-aos="fade-left" style={{ justifyContent: "center", textAlign: "center", color: "rgb(227, 156, 162)" }}>ToDo List</h1>
+        <div className="todo-container bg-white m-5 p-5 br-2" style={{boxShadow: "10px 0 10px black"}}>
+          <h1 data-aos="fade-left" style={{ 
+            justifyContent: "center", 
+            textAlign: "center", 
+            color: "rgb(11, 1, 1)",
+            margin: "5%",
+            padding: "5%",
+
+            }}>
+            ToDo List</h1>
           <Row gutter={16} className="mb-4">
             <Col xs={24} sm={12} md={8}>
               <Input
@@ -156,7 +164,7 @@ const TodosPage: React.FC = () => {
             title: 'Actions',
             key: 'actions',
             render: (text: any, record: any) => (
-              <Space size="middle">
+              <Space size="small">
                 <Button type="dashed" onClick={() => handleDeleteTodo(record._id)}>Delete</Button>
                 <Button type="primary" onClick={() => handleEditTodo(record)}>Edit</Button>
               </Space>
