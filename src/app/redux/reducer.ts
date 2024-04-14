@@ -1,36 +1,41 @@
 import { LOGIN, LOGOUT } from './actions';
+import { User } from '../redux/store';
 
-type State = {
-  user: any[];
-  token: any[];
-};
+// Define el tipo de estado
+interface State {
+  user: User | null; // Cambia el tipo de user a User | null
+  token: string[]; // Mantén el tipo de token como string[]
+}
 
-type Action = {
+// Define el tipo de acción
+interface Action {
   type: string;
   payload: {
-    user: any;
-    token: any;
+    user: User;
+    token: string;
   };
-};
+}
 
+// Define el estado inicial
 const initialState: State = {
-  user: [],
+  user: null, // Inicializa user como null
   token: [],
 };
 
+// Define el reductor
 const rootReducer = (state: State = initialState, action: Action) => {
   switch (action.type) {
     case LOGIN:
       return {
         ...state,
-        user: [...state.user, action.payload.user],
-        token: [...state.token, action.payload.token],
+        user: action.payload.user,
+        token: action.payload.token,
       };
     case LOGOUT:
       return {
         ...state,
-        //user: null,
-        token: null,
+        user: null, // Cambia user a null al hacer logout
+        token: [],
       };
     default:
       return state;

@@ -8,9 +8,9 @@ import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { login } from './redux/actions'; // Importa la acción login correctamente
 import { Provider } from 'react-redux';
-import {store, persistor} from './redux/store';
+import {store} from './redux/store';
 import { useSelector } from 'react-redux';	
-import { PersistGate } from 'redux-persist/integration/react';
+
 import Image from 'next/image';
 
 const LoginPage = () => {
@@ -85,9 +85,9 @@ const WrappedPages = () => {
   return (
     <div>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+
       <LoginPage />
-      </PersistGate>
+    
       </Provider>
     </div>
   );

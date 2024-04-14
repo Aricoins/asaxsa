@@ -11,7 +11,8 @@ export const login = (email: string, password: string) => async (dispatch: any) 
             email,
             password,
         });
-        console.log(response.data, "respuesta");
+        console.log(response.data.user, "usuario");
+        console.log(response.data.token, "token");
 
         // Dispatch the action with the data received from the response
         dispatch({ type: LOGIN, payload: response.data });

@@ -7,21 +7,22 @@ import 'aos/dist/aos.css'; // Importa el archivo CSS de AOS
 import {useSelector} from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { Provider } from 'react-redux';
-import {store} from '../redux/store';
+import {store, persistor} from '../redux/store';
 import TokenValidator from '../components/TokenValidator';
 import styles from './homepage.module.css';
 import { logout } from '../redux/actions';
 import avatardefault from '../../assets/avatardefault.png';
 import { RxAvatar } from "react-icons/rx";
-
+import { PersistGate } from 'redux-persist/integration/react';
 const { Title, Paragraph } = Typography;
 
 const Home: React.FC = () => {
   const token = useSelector((state: any) => state.token);
   const user = useSelector((state: any) => state.user);
-  const userGlobal = user[0] 
-  const tokenGlobal = token[0]
-  const globalAvatar = user.avatar || avatardefault; 
+  const userGlobal = user; 
+  const tokenGlobal = token;
+
+
 
   console.log(tokenGlobal, "tokenGlobal")
   const router = useRouter();
@@ -119,7 +120,9 @@ if (!userGlobal) {
 const WrappedProvider = () => {
   return (
     <Provider store={store}>
+   <PersistGate loading={"loadingg..."} persistor={persistor}> 
       <Home />
+      </PersistGate>
     </Provider>
   );
 }
