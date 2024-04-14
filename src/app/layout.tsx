@@ -24,20 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-<<<<<<< HEAD
     <html lang="en"  >
       <body className={styles.body}>
                   {children}
       </body>
-=======
-    <html lang="en" className='bg-black' >
-      <body className={`${inter.className} bg-black`}
-  >
-
-    {children}
-
-    </body>
->>>>>>> 87c1534af83fb9b49031ad509b1fd1092b3438ea
     </html>
   );
 }

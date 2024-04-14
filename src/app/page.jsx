@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux';
 import { login } from './redux/actions'; // Importa la acción login correctamente
 import { Provider } from 'react-redux';
 import {store} from './redux/store';
-import { useSelector } from 'react-redux';	
 
 import Image from 'next/image';
 
@@ -32,7 +31,7 @@ const LoginPage = () => {
     }
   };
 
-  useSelector((state) => state);
+ 
   useEffect(() => {
     
     AOS.init();
