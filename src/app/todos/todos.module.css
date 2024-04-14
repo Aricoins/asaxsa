@@ -5,6 +5,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: black;
   }
   
   .todo-container h1 {
@@ -44,20 +45,37 @@
     margin-left: 10px;
   }
 /* Estilo del contenedor del loader */
-.loader {
-  border: 10px solid rgba(186, 186, 37, 0.1); /* Color del borde */
-  border-top: 100px solid #f4eaea; /* Color del borde superior */
-  border-radius: 50%; /* Hace que el loader tenga forma de círculo */
-  width: 50px; /* Ancho del loader */
-  height: 50px; /* Altura del loader */
-  animation: spin 1s linear infinite; /* Aplica la animación spin */
-  margin: auto; /* Centra el loader horizontalmente */
-  margin-top: 20vh; 
-  background-color: antiquewhite;
+
+.loading {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+} 
+.loading::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-bottom-color: #FF3D00;
+  
 }
 
-/* Animación de rotación del loader */
-@keyframes spin {
-  0% { transform: rotate(0deg); } /* Define la rotación inicial */
-  100% { transform: rotate(360deg); } /* Define la rotación final */
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
