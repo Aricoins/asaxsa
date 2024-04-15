@@ -33,14 +33,14 @@ const TokenValidator = ({ token }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <h2>JWT Token</h2>
-      {!token ? (
+      {token ? (
         <div>
-          <p>The token is valid.</p>
-          <p>Protected Header: {JSON.stringify(decodedToken.protectedHeader)}</p>
-          <p>Payload: {JSON.stringify(decodedToken.payload)}</p>
+          <p style={{ color: "green", fontWeight: "500" }}>The token is valid.</p>
+          {/* <p>Protected Header: {JSON.stringify(decodedToken.protectedHeader)}</p> */}
+          {/* <p>Payload: {JSON.stringify(decodedToken.payload)}</p> */}
         </div>
       ) : (
-        <p style={{ color: "green", fontWeight: "500" }}>The token is invalid.</p>
+        <p style={{ color: "red", fontWeight: "500" }}>The token is invalid.</p>
       )}
     </div>
   );
