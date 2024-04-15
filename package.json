@@ -23,11 +23,13 @@
     "react-router-redux": "^4.0.8",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
+    "redux-persist-node-storage": "^2.0.0",
     "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
     "@types/node": "^20",
+    "@types/node-jose": "^1.1.13",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

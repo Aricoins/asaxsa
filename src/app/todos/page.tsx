@@ -224,3 +224,32 @@ const TodosPage: React.FC = () => {
 }
 
 export default TodosPage;
+
+
+//   const [hashtags, setHashtags] = useState([]);
+//   const [inputValue, setInputValue] = useState('');
+
+//   const handleInputChange = (e) => {
+//     setInputValue(e.target.value);
+//   };
+
+//   const handleAddHashtag = () => {
+//     if (inputValue.trim() !== '') {
+//       setHashtags([...hashtags, inputValue.trim()]);
+//       setInputValue('');
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <input type="text" value={inputValue} onChange={handleInputChange} />
+//       <button onClick={handleAddHashtag}>Agregar Hashtag</button>
+//       <ul>
+//         {hashtags.map((hashtag, index) => (
+//           <li key={index}>{hashtag}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+

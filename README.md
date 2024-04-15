@@ -1,84 +1,96 @@
-# TodoApp
+# Documentación del Proyecto Todos
 
-Este es un proyecto de aplicación web de gestión de tareas (todo list) desarrollado con React y Express. Permite a los usuarios crear, leer, actualizar y eliminar tareas.
+
+Este proyecto es una aplicación web desarrollada con Next.js, React, Redux y otras tecnologías modernas para crear una lista de tareas (todos). La aplicación utiliza autenticación JWT para permitir a los usuarios iniciar sesión y administrar sus listas de tareas.
+
 
 ## Instalación
 
-Para ejecutar la aplicación en tu entorno local, sigue estos pasos:
+
+Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
+
 
 1. Clona este repositorio en tu máquina local:
 
+
 ```bash
-git clone https://github.com/Aricoins/ToDoApp.git
+git clone <URL_DEL_REPOSITORIO>
 ```
+
 
 2. Navega al directorio del proyecto:
 
+
 ```bash
-cd todoapp
+cd todos
 ```
 
-3. Instala las dependencias del servidor y del cliente:
+
+3. Instala las dependencias del proyecto:
+
 
 ```bash
 npm install
 ```
 
-4. Inicia el servidor de desarrollo:
+
+## Uso
+
+
+Una vez que hayas instalado todas las dependencias, puedes ejecutar la aplicación en tu entorno local utilizando el siguiente comando:
+
 
 ```bash
 npm run dev
 ```
 
-5. Abre tu navegador web y visita [http://localhost:3000](http://localhost:3000) para ver la aplicación.
 
-## Estructura del Proyecto
+Esto iniciará el servidor de desarrollo de Next.js y podrás acceder a la aplicación en tu navegador visitando `http://localhost:3000`.
 
-- `client/`: Contiene el código fuente del cliente desarrollado con React.
-- `server/`: Contiene el código fuente del servidor desarrollado con Express.
-- `public/`: Contiene archivos estáticos que se sirven directamente al cliente.
-- `package.json`: Archivo de configuración de npm que especifica las dependencias del proyecto y los scripts de desarrollo.
 
-## Dependencias Principales
+## Tecnologías Utilizadas
 
-### Cliente (React)
 
-- **@reduxjs/toolkit**: Para la gestión del estado de la aplicación.
-- **axios**: Para realizar solicitudes HTTP al servidor.
-- **antd**: Componentes de interfaz de usuario de Ant Design.
-- **react-router-dom**: Para la gestión de rutas en la aplicación.
+- **Next.js**: Framework de React que permite renderizado del lado del servidor (SSR) y generación de sitios estáticos.
+- **React**: Biblioteca JavaScript de código abierto para construir interfaces de usuario.
+- **Redux**: Biblioteca para el manejo del estado de la aplicación.
+- **Axios**: Cliente HTTP basado en promesas para realizar solicitudes a la API.
+- **JWT-Decode**: Utilizado para decodificar tokens JWT en la aplicación.
+- **Ant Design**: Biblioteca de componentes de interfaz de usuario para React.
+- **React Router Dom**: Enrutador para React que permite la navegación entre diferentes componentes.
+- **Tailwind CSS**: Framework de diseño CSS de bajo nivel para diseñar interfaces de usuario personalizadas.
+- **TypeScript**: Superset de JavaScript que agrega tipado estático opcional al lenguaje.
 
-### Servidor (Express)
-
-- **express**: Marco de aplicación web para Node.js.
-- **cors**: Middleware para habilitar el acceso cruzado entre dominios.
-- **jsonwebtoken**: Para la autenticación basada en tokens JWT.
-- **dotenv**: Para cargar variables de entorno desde un archivo `.env`.
 
 ## Scripts Disponibles
 
-- `dev`: Inicia el servidor de desarrollo para el cliente y el servidor.
-- `build`: Compila el cliente y el servidor para producción.
-- `lint`: Ejecuta ESLint para detectar y corregir problemas de estilo de código.
-- `preview`: Vista previa de la compilación de producción.
-- `start`: Inicia el servidor de producción.
 
-## Contribuyendo
+- `npm run dev`: Inicia el servidor de desarrollo de Next.js.
+- `npm run build`: Compila la aplicación para producción.
+- `npm start`: Inicia la aplicación en modo de producción.
+- `npm run lint`: Ejecuta el linter para verificar el código en busca de errores de estilo y convenciones.
 
-Si deseas contribuir a este proyecto, sigue estos pasos:
 
-1. Haz un fork del repositorio.
-2. Crea una rama (`git checkout -b feature/nueva-caracteristica`).
-3. Realiza tus cambios y haz commit de ellos (`git commit -am 'Añade nueva característica'`).
-4. Sube la rama (`git push origin feature/nueva-caracteristica`).
-5. Abre una solicitud de extracción en GitHub.
+## Contribución
+
+
+Si deseas contribuir a este proyecto, ¡siéntete libre de hacerlo! Simplemente sigue estos pasos:
+
+
+1. Haz un fork de este repositorio.
+2. Crea una rama para tu nueva función: `git checkout -b feature/nueva-funcion`.
+3. Haz tus cambios y realiza los commits: `git commit -m 'Agrega nueva función'`.
+4. Empuja tus cambios a la rama: `git push origin feature/nueva-funcion`.
+5. Abre una solicitud de extracción (Pull Request) describiendo los cambios propuestos.
+
+
+¡Gracias por tu contribución!
+
 
 ## Licencia
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
 
----
+Este proyecto está bajo la Licencia [MIT](https://opensource.org/licenses/MIT).
 
-¡Gracias por utilizar TodoApp! 
 
-Login: {"email":"frontend.lilhorse@yopmail.com","password":"123456"}
+
