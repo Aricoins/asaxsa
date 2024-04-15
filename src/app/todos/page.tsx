@@ -1,14 +1,17 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FloatButton, Input, Button, Select, DatePicker, Row, Col, Modal, Table, Tag, Space, notification } from 'antd';
+import { FloatButton, InputNumber, Input, Button, Select, DatePicker, Row, Col, Modal, Table, Tag, Space, notification, InputNumberProps } from 'antd';
 import './todos.module.css';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import styless from './todos.module.css'
+import styless from './todos.module.css';
+
 
 const { Option } = Select;
-const URL = "https://servertodo-production.up.railway.app/api/todos/";
+
+const URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api/todos';
+//const URL = "https://servertodo-production.up.railway.app/api/todos/";
 
 const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<any[]>([]);
@@ -18,6 +21,8 @@ const TodosPage: React.FC = () => {
   const [editTodo, setEditTodo] = useState<any>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [priority, setPriority] = useState<number>(0);
+
 
   const fetchTodos = async () => {
     try {
@@ -172,10 +177,23 @@ const TodosPage: React.FC = () => {
                     style={{ width: '100%', margin: 'auto' }}
                   />
                 </Col>
+                <Col xs={24} sm={12} md={4}>
+
+</Col>
+  {/* <InputNumber
+    placeholder="Priority"
+    value={priority}
+    onChange={(value: number | null) => {
+      if (value !== null) {
+        setPriority(value);
+      }
+    }}
+    
+
+  /> */}
               </Row>
             </Modal>
           </div>
-
           <Table
             dataSource={todos}
             columns={[
