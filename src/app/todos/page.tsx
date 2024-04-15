@@ -94,13 +94,13 @@ const TodosPage: React.FC = () => {
         <div className={styless.loading}></div>
         </div> ) : (
         <div>
-          <div className="todo-container bg-white m-5 p-5 br-2" style={{ boxShadow: "10px 0 10px black" }}>
+          <div className="todo-container bg-white text-black m-2 p-2 " style={{ boxShadow: "10px 0 10px black", borderRadius: "5px", opacity: "0.9" }}>
             <h1 data-aos="fade-left" style={{
               justifyContent: "center",
               textAlign: "center",
               color: "rgb(11, 1, 1)",
               margin: "5%",
-              padding: "5%"
+              padding: "2%"
             }}>
               ToDo List</h1>
             <Row gutter={16} className="mb-4">
@@ -224,32 +224,4 @@ const TodosPage: React.FC = () => {
 }
 
 export default TodosPage;
-
-
-//   const [hashtags, setHashtags] = useState([]);
-//   const [inputValue, setInputValue] = useState('');
-
-//   const handleInputChange = (e) => {
-//     setInputValue(e.target.value);
-//   };
-
-//   const handleAddHashtag = () => {
-//     if (inputValue.trim() !== '') {
-//       setHashtags([...hashtags, inputValue.trim()]);
-//       setInputValue('');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <input type="text" value={inputValue} onChange={handleInputChange} />
-//       <button onClick={handleAddHashtag}>Agregar Hashtag</button>
-//       <ul>
-//         {hashtags.map((hashtag, index) => (
-//           <li key={index}>{hashtag}</li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
 
