@@ -4,16 +4,16 @@ import { Button, Typography, Card, Modal } from 'antd';
 import Link from 'next/link';
 import AOS from 'aos'; // Importa la librería AOS
 import 'aos/dist/aos.css'; // Importa el archivo CSS de AOS
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { Provider } from 'react-redux';
 import {store, persistor} from '../redux/store';
 import TokenValidator from '../components/TokenValidator';
 import styles from './homepage.module.css';
 import { logout } from '../redux/actions';
-import avatardefault from '../../assets/avatardefault.png';
 import { RxAvatar } from "react-icons/rx";
 import { PersistGate } from 'redux-persist/integration/react';
+import Loading from '../components/Loading';
 const { Title, Paragraph } = Typography;
 
 const Home: React.FC = () => {
@@ -24,15 +24,10 @@ const Home: React.FC = () => {
 
 
 
-  console.log(tokenGlobal, "tokenGlobal")
+  //console.log(tokenGlobal, "tokenGlobal")
   const router = useRouter();
-//   if (!tokenGlobal) {
-//     router.push(' ./')
-//   } 
-// else { 
-//   console.log( userGlobal, "Datos del usuario global en homepage")
-// }
-if (!userGlobal) {
+
+if (userGlobal === null || userGlobal.role !== 'quoter' ) {
   Modal.error({
     title: 'Access Denied',
     content: 'This route is exclusive to authenticated users with the quoter role.',
@@ -50,32 +45,27 @@ if (!userGlobal) {
       duration: 1000, // Duración de la animación en milisegundos
          });
   }, []);
-  console.log(userGlobal, "usuario antes del return")
+  //console.log(userGlobal, "usuario antes del return")
 
-  console.log(tokenGlobal, "token antes del return")
+  //console.log(tokenGlobal, "token antes del return")
   
-  // const handleLogout = async () => {
-  //   const id =  userGlobal.id;
-  //   logout(id);
-  //     navigate.push('/');
-  //   } catch (error) {
-  //     console.error('Error logging in:', error);
-  //   } 
-  // };
-
-
+  const handleLogout = () => {
+    logout(); // Dispatch the logout action
+    router.push('/'); 
+  };
+console.log(userGlobal, "userGlobal")
   return (
    userGlobal ? 
-   <div className="container-fluid text-right w-2">
+   <div className="container-fluid text-right w-2 gap-5">
         <div className="row mt-2">
           <div className="col-md-6">
-            <div className="card bg-white shadow-md rounded-lg">
+            <div className="card  shadow-md rounded-lg">
               <div className="card-body">
                 <div className="flex justify-between items-center">
                   <div style={{fontSize: "120px", display: "flex", justifyContent: "center", alignSelf: "center", margin: "auto" }}>
                   <RxAvatar  />  
                                         <div>
-                    <h2 className="card-title text-lg font-semibold text-gray-800 m-3 p-3">My Profile:</h2></div>
+                    <h2 className="card-title text-lg font-semibold  m-3 p-3">My Profile:</h2></div>
                   </div>
                   
                 <TokenValidator token={tokenGlobal} />
@@ -86,16 +76,12 @@ if (!userGlobal) {
               </div>
               
               </div>
-            <button
-                    onClick={logout()}
-                    className="text-primary"
-                  >
-                    Logout
-                  </button>
+              <Button onClick={() => handleLogout()} className="text-primary">Logout</Button>
+
             </div>
           </div>
           
-          <div className="col-md-6 bg-white bg-opacity-70 p-10 m-20 text-center"> 
+          <div className="col-md-6  bg-white bg-opacity-70 p-10 m-20 text-center"> 
   
       <Title data-aos="fade-up">Welcome Todo App </Title>
       <Paragraph data-aos="fade-up">
@@ -120,7 +106,7 @@ if (!userGlobal) {
 const WrappedProvider = () => {
   return (
     <Provider store={store}>
-   <PersistGate loading={"loadingg..."} persistor={persistor}> 
+   <PersistGate loading={<Loading />} persistor={persistor}> 
       <Home />
       </PersistGate>
     </Provider>

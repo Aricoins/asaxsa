@@ -1,43 +1,46 @@
-import React, { useState } from 'react';
-import * as jwtDecode from 'jwt-decode';
+"use client"
+//import { useEffect, useState } from 'react';
+//import jose from 'node-jose'; // Importa la biblioteca node-jose
 
 const TokenValidator = ({ token }) => {
-  const [isValid, setIsValid] = useState(false);
-  const [decodedToken, setDecodedToken] = useState(null);
+  // const [isValid, setIsValid] = useState(false);
+  // const [decodedToken, setDecodedToken] = useState(null);
 
-  const validateToken = () => {
-    try {
-      // Decodificar el token
-      const decoded = jwtDecode(token);
-      setDecodedToken(decoded);
-      // Marcar como válido si no hay errores en el proceso de decodificación
-      setIsValid(true);
-    } catch (error) {
-      // Marcar como inválido si hay errores en el proceso de decodificación
-      setIsValid(false);
-      console.error('Error al decodificar el token:', error);
-    }
-  };
+  // useEffect(() => {
+  //   const decryptToken = async () => {
+  //     try {
+  //       const secret = jose.base64url.decode('zH4NRP1HMALxxCFnRZABFA7GOJtzU_gIj02alfL1lvI');
+  //       const { payload, protectedHeader } = await jose.jwtDecrypt(token, secret, {
+  //         issuer: 'urn:example:issuer',
+  //         audience: 'urn:example:audience',
+  //       });
 
-  // Validar el token cuando el componente se monta
-  useState(() => {
-    validateToken();
-  }, []);
+  //       setIsValid(true);
+  //       setDecodedToken({ payload, protectedHeader });
+  //     } catch (error) {
+  //       setIsValid(false);
+  //       setDecodedToken(null);
+  //       console.error('Error decrypting the token:', error);
+  //     }
+  //   };
+
+  //   if (token) {
+  //     decryptToken();
+  //   }
+  // }, [token]);
+
 
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: "center"
-    }} >
-      <h2>Token JWT</h2>
-      {isValid ? (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <h2>JWT Token</h2>
+      {!token ? (
         <div>
-          <p>El token es válido.</p>
-          <p>ID de usuario: {decodedToken._id}</p>
-          <p>Nombre: {decodedToken.firstName} {decodedToken.lastName}</p>
-          <p>Email: {decodedToken.email}</p>
-          {/* Podemos mostrar más información del token aquí */}
+          <p>The token is valid.</p>
+          <p>Protected Header: {JSON.stringify(decodedToken.protectedHeader)}</p>
+          <p>Payload: {JSON.stringify(decodedToken.payload)}</p>
         </div>
       ) : (
-        <p style={{color: "green", fontWeight: "500"}}>El token es válido.</p>
+        <p style={{ color: "green", fontWeight: "500" }}>The token is invalid.</p>
       )}
     </div>
   );

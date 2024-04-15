@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
-import  rootReducer  from './reducer'; // Asegúrate de importar el rootReducer correcto
+import  rootReducer  from './reducer';
 import { thunk } from 'redux-thunk';
 import storage from 'redux-persist/lib/storage'; 
 
@@ -26,7 +26,6 @@ const persistConfig = {
   whitelist: ['user', 'token'], // Lista blanca de los reductores que se van a persistir
 };
 
-// Asegúrate de que el tipo del estado inicial coincide con el tipo AuthState
 const persistedReducer = persistReducer<AuthState>(persistConfig, rootReducer as any);
 
 // Crea la tienda Redux con el reductor persistido
