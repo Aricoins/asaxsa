@@ -10,8 +10,8 @@ import styless from './todos.module.css';
 
 const { Option } = Select;
 
-const URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api/todos';
-//const URL = "https://servertodo-production.up.railway.app/api/todos/";
+//const URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api/todos';
+const URL = "https://servertodo-production.up.railway.app/api/todos/";
 
 const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<any[]>([]);
