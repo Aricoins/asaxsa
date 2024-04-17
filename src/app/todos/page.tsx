@@ -6,6 +6,7 @@ import './todos.module.css';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import styless from './todos.module.css';
+import "../globals.module.css
 
 const { Option } = Select;
 
