@@ -1,12 +1,10 @@
-"use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FloatButton, InputNumber, Input, Button, Select, DatePicker, Row, Col, Modal, Table, Tag, Space, notification, InputNumberProps } from 'antd';
-import './todos.module.css';
+import { Button, Input, Select, DatePicker, Row, Col, Modal, Table, Tag, Space, notification } from 'antd';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import styless from './todos.module.css';
-import "../global.module.css
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdjust } from '@fortawesome/free-solid-svg-icons';
 
 const { Option } = Select;
 
@@ -21,7 +19,7 @@ const TodosPage: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [priority, setPriority] = useState<number>(0);
-  const [darkMode, setDarkMode] = useState(false); // Estado local para el modo oscuro
+  const [darkMode, setDarkMode] = useState(false);
 
   const fetchTodos = async () => {
     try {
@@ -86,7 +84,6 @@ const TodosPage: React.FC = () => {
     }
   };
 
-  // Función para cambiar entre modo claro y modo oscuro
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -97,22 +94,15 @@ const TodosPage: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className={`container ${darkMode ? 'dark' : 'light'}`}>
       {!loading ? (
-        <div style={{display:"flex", flexDirection: "row", justifyContent: "center", marginTop: "20%"}}>
-          <div className={styless.loading}></div>
-        </div> ) : (
-        <div className={darkMode ? 'container dark-mode' : 'container'}>
-          <div className={`todo-container ${darkMode ? 'dark-mode' : ''} bg-white text-black m-2 p-2`} style={{ boxShadow: "10px 0 10px black", borderRadius: "5px", opacity: "0.9" }}>
-            <h1 data-aos="fade-left" style={{
-              justifyContent: "center",
-              textAlign: "center",
-              color: "rgb(11, 1, 1)",
-              margin: "5%",
-              padding: "2%"
-            }}>
-              ToDo List
-            </h1>
+        <div className="flex justify-center mt-20">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <div>
+          <div className="todo-container bg-white text-black m-2 p-2 shadow-lg rounded opacity-90">
+            <h1 data-aos="fade-left" className="text-center text-2xl font-bold m-5 p-2">ToDo List</h1>
             <Row gutter={16} className="mb-4">
               <Col xs={24} sm={12} md={8}>
                 <Input
@@ -182,9 +172,7 @@ const TodosPage: React.FC = () => {
                     style={{ width: '100%', margin: 'auto' }}
                   />
                 </Col>
-                <Col xs={24} sm={12} md={4}>
-
-                </Col>
+                <Col xs={24} sm={12} md={4}></Col>
               </Row>
             </Modal>
           </div>
@@ -229,13 +217,12 @@ const TodosPage: React.FC = () => {
               },
             ]}
           />
-          {/* Botón de cambio de modo */}
           <Button onClick={toggleDarkMode} style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
-            {darkMode ? 'Light Mode' : 'Dark Mode'}
+            <FontAwesomeIcon icon={faAdjust} />
           </Button>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
