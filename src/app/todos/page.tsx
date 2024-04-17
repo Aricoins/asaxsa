@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FloatButton, InputNumber, Input, Button, Select, DatePicker, Row, Col, Modal, Table, Tag, Space, notification, InputNumberProps } from 'antd';
