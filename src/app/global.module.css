@@ -1,32 +1,48 @@
+/* Animación de cambio de tamaño de fondo */
 @keyframes changeBackgroundSize {
-    0% { background-size: 300% 300%; }
-    5%  { background-size: 5% 5%; }
-    40%  { background-size: 60% 60%; }
-    60%  { background-size: 150% 20%; }
-    80% { background-size: 120% 1%; }
-    100% { background-size: 300% 300%; }
-  }
-  
-  .body { 
-    background: radial-gradient(circle, transparent 60%, rgb(0, 2, 11) 80%);
-    animation: changeBackgroundSize 180s linear infinite;
-color: white;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .botontodos {
-    background-color: rgb(0, 5, 7);
-   
-    width: 50%;
-    height: 50px;
-    box-shadow: black 0px 0px 10px;
-    text-decoration: none;
-    margin: 10%;  
+  0% { background-size: 300% 300%; }
+  5%  { background-size: 5% 5%; }
+  40%  { background-size: 60% 60%; }
+  60%  { background-size: 150% 20%; }
+  80% { background-size: 120% 1%; }
+  100% { background-size: 300% 300%; }
+}
+
+/* Estilos para el cuerpo de la página */
+.body { 
+  background: radial-gradient(circle, transparent 60%, rgb(0, 2, 11) 80%);
+  animation: changeBackgroundSize 180s linear infinite;
+  color: white; /* Color de texto blanco */
+}
+
+/* Contenedor principal del componente */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Estilos para los botones */
+.botontodos {
+  background-color: rgb(0, 5, 7); /* Fondo oscuro */
+  color: white; /* Texto blanco */
+  width: 50%;
+  height: 50px;
+  box-shadow: black 0px 0px 10px;
+  text-decoration: none;
+  margin: 10%;  
+}
+
+/* Modo oscuro */
+.dark-mode .body {
+  background: radial-gradient(circle, transparent 60%, white 80%); /* Invierte el fondo */
+  color: black; /* Invierte el color de texto */
+}
+
+.dark-mode .botontodos {
+  background-color: white; /* Invierte el fondo del botón */
+  color: black; /* Invierte el color de texto del botón */
+  /* Otros estilos para el modo oscuro */
 }
